@@ -202,7 +202,8 @@ namespace NGit.Storage.File
 		/// <exception cref="System.IO.IOException"></exception>
 		private FilePath GetFile(params string[] pathComponents)
 		{
-			string rootPath = new FilePath(new FilePath("target"), "trash").GetPath();
+			string rootPath = new FilePath(NUnit.Framework.TestContext.CurrentContext.TestDirectory, 
+                new FilePath(new FilePath("target"), "trash")).GetPath();
 			foreach (string pathComponent in pathComponents)
 			{
 				rootPath = rootPath + FilePath.separatorChar + pathComponent;

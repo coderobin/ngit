@@ -54,7 +54,8 @@ namespace NGit.Storage.File
 	{
 		private IList<FilePath> files = new AList<FilePath>();
 
-		private readonly FilePath trash = new FilePath(new FilePath("target"), "trash");
+		private readonly FilePath trash = new FilePath(TestContext.CurrentContext.TestDirectory, 
+            new FilePath(new FilePath("target"), "trash"));
 
 		/// <exception cref="System.Exception"></exception>
 		[SetUp]

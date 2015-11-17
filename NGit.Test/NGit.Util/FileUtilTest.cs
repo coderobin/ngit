@@ -50,7 +50,8 @@ namespace NGit.Util
 	[NUnit.Framework.TestFixture]
 	public class FileUtilTest
 	{
-		private readonly FilePath trash = new FilePath(new FilePath("target"), "trash");
+		private readonly FilePath trash = new FilePath(NUnit.Framework.TestContext.CurrentContext.TestDirectory, 
+            new FilePath(new FilePath("target"), "trash"));
 
 		/// <exception cref="System.Exception"></exception>
 		[NUnit.Framework.SetUp]

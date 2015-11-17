@@ -91,7 +91,8 @@ namespace NGit.Junit
 		/// <remarks>A fake (but stable) identity for committer fields in the test.</remarks>
 		protected internal PersonIdent committer;
 
-		private readonly FilePath trash = new FilePath(new FilePath("target"), "trash");
+		private readonly FilePath trash = new FilePath(NUnit.Framework.TestContext.CurrentContext.TestDirectory,
+            new FilePath(new FilePath("target"), "trash"));
 
 		private readonly IList<Repository> toClose = new AList<Repository>();
 
