@@ -23,10 +23,10 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 using System.Security.Cryptography;
 using System.IO;
-using Mono.Security.Cryptography;
 
 namespace Sharpen
 {
@@ -58,20 +58,18 @@ namespace Sharpen
 	
 	class SHA1withRSASignature: Signature
 	{
-		RSAManaged rsa = new RSAManaged ();
+        RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
 		MemoryStream ms = new MemoryStream ();
 		
 		public override byte[] Sign ()
 		{
 			try {
 				ms.Position = 0;
-				HashAlgorithm hash = HashAlgorithm.Create ("SHA1");
-				byte[] toBeSigned = hash.ComputeHash (ms);
-				ms = new MemoryStream ();
-				return PKCS1.Sign_v15 (rsa, hash, toBeSigned);
-				
-//				byte[] res = rsa.SignData (ms, "sha1");
-//				return res;
+
+                RSAPKCS1SignatureFormatter RSAFormatter = new RSAPKCS1SignatureFormatter(RSA);
+                RSAFormatter.SetHashAlgorithm("SHA1");
+
+                return RSAFormatter.CreateSignature(ms.ToArray());		
 			} catch (Exception ex) {
 				Console.WriteLine (ex);
 				throw;
@@ -86,7 +84,7 @@ namespace Sharpen
 		public override void InitSign (PrivateKey key)
 		{
 			try {
-				rsa.ImportParameters (((RSAPrivateKey)key).Parameters);
+                RSA.ImportParameters(((RSAPrivateKey)key).Parameters);
 			} catch (Exception ex) {
 				Console.WriteLine (ex);
 				throw;
@@ -95,15 +93,14 @@ namespace Sharpen
 		
 		public override void InitVerify (PublicKey key)
 		{
-			rsa.ImportParameters (((RSAPublicKey)key).Parameters);
+			RSA.ImportParameters(((RSAPublicKey)key).Parameters);
 		}
 		
 		public override bool Verify (byte[] signature)
 		{
-			HashAlgorithm hash = HashAlgorithm.Create ("SHA1");
-			byte[] toBeVerified = hash.ComputeHash (ms.ToArray ());
-			return PKCS1.Verify_v15 (rsa, hash, toBeVerified, signature);
-//			return rsa.VerifyData (ms.ToArray (), "SHA1", signature);
+            RSAPKCS1SignatureDeformatter RSADeformatter = new RSAPKCS1SignatureDeformatter(RSA);
+            RSADeformatter.SetHashAlgorithm("SHA1");
+            return RSADeformatter.VerifySignature(ms.ToArray(), signature);
 		}
 		
 		static byte[] CB (sbyte[] si)

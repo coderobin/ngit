@@ -594,13 +594,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NSch\NSch.csproj">
+      <Project>{a19e6f3f-a25b-4b01-8922-cf0cc35c781d}</Project>
+      <Name>NSch</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sharpen\Sharpen.csproj">
       <Project>{72944A6C-45FF-4EF8-B349-8C9CABF519D4}</Project>
       <Name>Sharpen</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NSch\NSch.csproj">
-      <Project>{A19E6F3F-A25B-4B01-8922-CF0CC35C781D}</Project>
-      <Name>NSch</Name>
     </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>

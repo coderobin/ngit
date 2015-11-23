@@ -109,7 +109,7 @@ namespace Sharpen
 		
 		public override KeyPair GenerateKeyPair ()
 		{
-			DiffieHellmanManaged dh = new DiffieHellmanManaged (pspec.P.GetBytes (), pspec.G.GetBytes (), 0);
+			DiffieHellmanManaged dh = new DiffieHellmanManaged (pspec.P.GetBytes(), pspec.G.GetBytes(), 0);
 			DHParameters dhpars = dh.ExportParameters (true);
 			BigInteger y = new BigInteger (dh.CreateKeyExchange ());
 			return new KeyPair (new DHPrivateKey (dhpars), new DHPublicKey (y));

@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -29,10 +30,6 @@
     <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mono.Security.3.2.3.0\lib\net40\Mono.Security.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +72,21 @@
     <Compile Include="NSch\KnownHosts.cs" />
     <Compile Include="NSch\Logger.cs" />
     <Compile Include="NSch\MAC.cs" />
+    <Compile Include="NSch\mono\ARC4Managed.cs" />
+    <Compile Include="NSch\mono\BigInteger.cs" />
+    <Compile Include="NSch\mono\ConfidenceFactor.cs" />
+    <Compile Include="NSch\mono\CryptoTools.cs" />
+    <Compile Include="NSch\mono\DHKeyGeneration.cs" />
+    <Compile Include="NSch\mono\DHParameters.cs" />
+    <Compile Include="NSch\mono\DiffieHellman.cs" />
+    <Compile Include="NSch\mono\DiffieHellmanManaged.cs" />
+    <Compile Include="NSch\mono\NextPrimeFinder.cs" />
+    <Compile Include="NSch\mono\PrimalityTests.cs" />
+    <Compile Include="NSch\mono\PrimeGeneratorBase.cs" />
+    <Compile Include="NSch\mono\RC4.cs" />
+    <Compile Include="NSch\mono\SecurityParser.cs" />
+    <Compile Include="NSch\mono\SequentialSearchPrimeGeneratorBase.cs" />
+    <Compile Include="NSch\mono\SmallXmlParser.cs" />
     <Compile Include="NSch\Packet.cs" />
     <Compile Include="NSch\PortWatcher.cs" />
     <Compile Include="NSch\Proxy.cs" />
@@ -206,8 +218,5 @@
       <Project>{72944A6C-45FF-4EF8-B349-8C9CABF519D4}</Project>
       <Name>Sharpen</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

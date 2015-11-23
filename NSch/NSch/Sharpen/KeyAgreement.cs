@@ -23,7 +23,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
+using System.Security.Cryptography;
 using Mono.Security.Cryptography;
 
 namespace Sharpen
@@ -66,7 +68,7 @@ namespace Sharpen
 		
 		public override byte[] GenerateSecret ()
 		{
-			return dh.DecryptKeyExchange (pubk.GetY ().GetBytes ());
+			return dh.DecryptKeyExchange (pubk.GetY ().GetBytes());
 		}
 	}
 }
